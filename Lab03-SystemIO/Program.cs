@@ -41,7 +41,10 @@ namespace Lab03_SystemIO
             //Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
 
             //Challenge 6
-            WriteUserInputToFile();
+            //WriteUserInputToFile();
+
+            //Challenge 7
+            WriteWordsTxtFileToConsole();
         }
 
         //Challenge 1
@@ -279,6 +282,9 @@ namespace Lab03_SystemIO
         }
 
         //Challenge 6
+        /// <summary>
+        /// Prompts the user for the text they'd like to write to the "words.txt" file.
+        /// </summary>
         static void WriteUserInputToFile()
         {
             Console.WriteLine("What words would like carved into eternity?");
@@ -287,10 +293,53 @@ namespace Lab03_SystemIO
             WriteStringToFile(userInput, path);
         }
 
+        /// <summary>
+        /// Appends the str parameter to the file specified in the path parameter. If file
+        /// already has any text, new text will be appended on a new line.
+        /// </summary>
+        /// <param name="str">
+        /// The text to be written to the file.
+        /// </param>
+        /// <param name="path">
+        /// The path of the file
+        /// </param>
         public static void WriteStringToFile(string str, string path)
         {
             str = "\n" + str;
             File.AppendAllText(path, str);
+        }
+
+        //Challenge 7
+        /// <summary>
+        /// Writes the text content of the "words.txt" file to the console.
+        /// </summary>
+        static void WriteWordsTxtFileToConsole()
+        {
+            string path = "../../../words.txt";
+            Console.WriteLine(ReadFileAt(path));
+        }
+
+        /// <summary>
+        /// Reads the file at the path parameter, and returns its contents as a string.
+        /// </summary>
+        /// <param name="path">
+        /// The path of a file.
+        /// </param>
+        /// <returns>
+        /// A string of the text contents of the file.
+        /// </returns>
+        public static string ReadFileAt(string path)
+        {
+            StringBuilder rtnString = new StringBuilder();
+            using (StreamReader strmReader = File.OpenText(path))
+            {
+                string nextLine;
+                while ((nextLine = strmReader.ReadLine()) != null)
+                {
+                    rtnString.AppendLine(nextLine);
+                }
+            }
+            return rtnString.ToString();
         }
 
         //Helper methods

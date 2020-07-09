@@ -39,6 +39,9 @@ A method to find the largest value in an array of integers.
 ### Challenge 6
 A console app that gets the user's input and writes that to a file "words.txt". If file exists and has content, appends new content on a new line.
 
+### Challenge 7
+A console app that writes the contents of the file "words.txt" to the console. If the file has multiple lines, each line is written as a new line.
+
 ---
 
 ### Getting Started
@@ -89,6 +92,9 @@ Select ```Debug``` -> ```Start Without Debugging```
 #### Challenge 6
 ![Challenge 6 Sample Output](images/Challenge06-SampleOutput.png)
 
+#### Challenge 7
+![Challenge 7 Sample Output](images/Challenge07-SampleOutput.png)
+
 ### Change Log
 
 #### 2020-07-08
@@ -98,7 +104,7 @@ Select ```Debug``` -> ```Start Without Debugging```
 - Challenge 04. 21:10 PDT
 - Challenge 05. 21:54 PDT
 - Challenge 06. 22:15 PDT
-
+- Challenge 07. 22:37 PDT
 
 ------------------------------
 For more information on Markdown: https://www.markdownguide.org/cheat-sheet
