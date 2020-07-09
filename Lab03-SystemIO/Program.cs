@@ -6,7 +6,11 @@ namespace Lab03_SystemIO
     {
         static void Main(string[] args)
         {
-            AskUserForThreeNumbers();
+            //Challenge 1
+            //GetProductFromUserInput();
+
+            //Challenge 2
+            GetAverageFromUserInput();
         }
 
         //Challenge 1
@@ -16,7 +20,7 @@ namespace Lab03_SystemIO
         /// <remarks>
         /// Uses ThreeNumbersProduct() to calculate the product.
         /// </remarks>
-        static void AskUserForThreeNumbers()
+        static void GetProductFromUserInput()
         {
             Console.WriteLine("Fortune to you my good friend! We get to find out the proudct of three numbers in the most laborous modern way possible!\n");
             Console.WriteLine("Please enter your three numbers separated by one or more spaces:");
@@ -50,6 +54,79 @@ namespace Lab03_SystemIO
                 }
             }
             return product;
+        }
+
+        //Challenge 2
+        /// <summary>
+        /// Asks user for how many numbers they want to calculate the average of,
+        /// and then user enters the numbers. Shows the user the average as an integer
+        /// rounded down.
+        /// </summary>
+        static void GetAverageFromUserInput()
+        {
+            bool arraySizeValidInput = false;
+            int arraySize = 0;
+            do
+            {
+                Console.Write("Please enter a number between 2 - 10: ");
+                string userInput = Console.ReadLine();
+                if (Int32.TryParse(userInput, out int result))
+                {
+                    if (result >= 2 && result <= 10)
+                    {
+                        arraySizeValidInput = true;
+                        arraySize = result;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Number not with the specified range (2 - 10)");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a number");
+                }
+            } while (!arraySizeValidInput);
+            int[] intArray = new int[arraySize];
+            for (int i = 0; i < arraySize; i++)
+            {
+                bool arrayInsertValidInput = false;
+                do
+                {
+                    Console.Write("{0} of {1} - Enter a number: ", i + 1, arraySize);
+                    string userInput = Console.ReadLine();
+                    if (Int32.TryParse(userInput, out int result))
+                    {
+                        arrayInsertValidInput = true;
+                        intArray[i] = result;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Entry is not a number, please enter another.");
+                    }
+                } while (!arrayInsertValidInput);
+            }
+            int average = AverageArray(intArray);
+            Console.WriteLine("The average of these {0} numbers is {1}", arraySize, average);
+        }
+
+
+        /// <summary>
+        /// Calculates the average, as an integer rounded down, of the numbers in
+        /// the parameter array.
+        /// </summary>
+        /// <param name="array">An array of integers</param>
+        /// <returns>The average of the integers in the array, as an integer rounded
+        /// down.
+        /// </returns>
+        public static int AverageArray(int[] array)
+        {
+            int sum = 0;
+            foreach (int oneInt in array)
+            {
+                sum += oneInt;
+            }
+            return sum / array.Length;
         }
     }
 }

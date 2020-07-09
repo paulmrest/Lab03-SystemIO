@@ -60,5 +60,15 @@ namespace Lab03_SystemIOTest
             int result = ThreeNumbersProduct(input);
             Assert.Equal(expected, result);
         }
+
+        //Challenge 2
+        [Theory]
+        [InlineData(new int[] { 2, 6, 7 }, 5)]
+        [InlineData(new int[] { 12, 9, 1, 4, 25, 8, 16}, 10)]
+        public void TestAverageArray(int[] input, int expected)
+        {
+            int result = AverageArray(input);
+            Assert.Equal(expected, result);
+        }
     }
 }

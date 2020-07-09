@@ -9,7 +9,11 @@
 ## Descriptions
 
 ### Challenge 1
+A console app that prompts the user for three or more numbers. Calculates the product
+of those numbers and shows it to the user.
 
+### Challenge 2
+A console app that prompts the user for a number between 2 - 10. User then enters that many numbers, and app calculates the average of those numbers (as integer rounded down) and shows it to the user.
 
 ---
 
@@ -44,8 +48,10 @@ Select ```Debug``` -> ```Start Without Debugging```
 ### Visuals
 
 #### Challenge 1
+![Challenge 1 Sample Output](images/Challenge01-SampleOutput.png)
 
-![Challenge 1 Sample Output](images/Challenge01-SampleOutput.md)
+#### Challenge 2
+![Challenge 2 Sample Output](images/Challenge02-SampleOutput.png)
 
 ### Current Version
 
@@ -55,6 +61,8 @@ Select ```Debug``` -> ```Start Without Debugging```
 
 #### 2020-07-08
 - Challenge 01 and README template completed. 16:33 PDT
+- Challenge 02 and tweaks to README. 18:15 PDT
+
 
 
 ------------------------------
