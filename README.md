@@ -34,6 +34,9 @@ A method that finds the most common value in an array of integers.
 ### Challenge 5
 A method to find the largest value in an array of integers.
 
+### Challenge 6
+A console app that gets the user's input and writes that to a file "words.txt". If file exists and has content, appends new content on a new line.
+
 ---
 
 ### Getting Started
@@ -78,8 +81,11 @@ Select ```Debug``` -> ```Start Without Debugging```
 #### Challenge 4
 ![Challenge 4 Sample Output](images/Challenge04-SampleOutput.png)
 
-#### Challenge 4
+#### Challenge 5
 ![Challenge 5 Sample Output](images/Challenge05-SampleOutput.png)
+
+#### Challenge 6
+![Challenge 6 Sample Output](images/Challenge06-SampleOutput.png)
 
 ### Change Log
 
@@ -89,6 +95,8 @@ Select ```Debug``` -> ```Start Without Debugging```
 - Challenge 03. 19:58 PDT
 - Challenge 04. 21:10 PDT
 - Challenge 05. 21:54 PDT
+- Challenge 06. 22:15 PDT
+
 
 ------------------------------
 For more information on Markdown: https://www.markdownguide.org/cheat-sheet

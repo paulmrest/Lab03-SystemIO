@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -30,14 +31,17 @@ namespace Lab03_SystemIO
             //Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(mostCommonIntArray), FindMostCommon(mostCommonIntArray));
 
             //Challenge 5
-            int[] maxValueIntArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
-            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
-            maxValueIntArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
-            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
-            maxValueIntArray = new int[] { 43, 3, 19, 4, 19 };
-            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
-            maxValueIntArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
-            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            //int[] maxValueIntArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
+            //Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            //maxValueIntArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
+            //Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            //maxValueIntArray = new int[] { 43, 3, 19, 4, 19 };
+            //Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            //maxValueIntArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
+            //Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+
+            //Challenge 6
+            WriteUserInputToFile();
         }
 
         //Challenge 1
@@ -234,6 +238,15 @@ namespace Lab03_SystemIO
         }
 
         //Challenge 5
+        /// <summary>
+        /// Finds the largest value in an array of integers and returns it.
+        /// </summary>
+        /// <param name="array">
+        /// An array of integers.
+        /// </param>
+        /// <returns>
+        /// An integer representing the largest value.
+        /// </returns>
         public static int FindLargest(int[] array)
         {
             BubbleSortArray(array);
@@ -263,6 +276,21 @@ namespace Lab03_SystemIO
                     }
                 }
             }
+        }
+
+        //Challenge 6
+        static void WriteUserInputToFile()
+        {
+            Console.WriteLine("What words would like carved into eternity?");
+            string userInput = Console.ReadLine();
+            string path = "../../../words.txt";
+            WriteStringToFile(userInput, path);
+        }
+
+        public static void WriteStringToFile(string str, string path)
+        {
+            str = "\n" + str;
+            File.AppendAllText(path, str);
         }
 
         //Helper methods
