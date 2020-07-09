@@ -31,6 +31,9 @@ Print the following figure to the console:
 ### Challenge 4
 A method that finds the most common value in an array of integers.
 
+### Challenge 5
+A method to find the largest value in an array of integers.
+
 ---
 
 ### Getting Started
@@ -75,6 +78,9 @@ Select ```Debug``` -> ```Start Without Debugging```
 #### Challenge 4
 ![Challenge 4 Sample Output](images/Challenge04-SampleOutput.png)
 
+#### Challenge 4
+![Challenge 5 Sample Output](images/Challenge05-SampleOutput.png)
+
 ### Change Log
 
 #### 2020-07-08
@@ -82,7 +88,7 @@ Select ```Debug``` -> ```Start Without Debugging```
 - Challenge 02 and tweaks to README. 18:15 PDT
 - Challenge 03. 19:58 PDT
 - Challenge 04. 21:10 PDT
-
+- Challenge 05. 21:54 PDT
 
 ------------------------------
 For more information on Markdown: https://www.markdownguide.org/cheat-sheet

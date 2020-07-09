@@ -114,5 +114,60 @@ namespace Lab03_SystemIOTest
             int result = FindMostCommon(input);
             Assert.Equal(expected, result);
         }
+
+        //Challenge 5
+        [Fact]
+        public void FindsLargestNegativeNumber()
+        {
+            //Arrange
+            int[] input = new int[] { -6, -87, -32, -7, -9 };
+            //Act
+            int result = FindLargest(input);
+            //Assert
+            Assert.Equal(-6, result);
+        }
+
+        [Fact]
+        public void AllSameValuesLargestTest()
+        {
+            //Arrange
+            int[] input = new int[] { 31, 31, 31, 31, 31 };
+            //Act
+            int result = FindLargest(input);
+            //Assert
+            Assert.Equal(31, result);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 5, 12, 6, 3 }, 12)]
+        [InlineData(new int[] { 43, 3, 19, 4, 17, 11 }, 43)]
+        [InlineData(new int[] { 54, 9, 54, 1 }, 54)]
+        public void FindLargestTest(int[] input, int expected)
+        {
+            int result = FindLargest(input);
+            Assert.Equal(expected, result);
+        }
+
+        //Challenge 5 - Helper Sort Method
+        [Fact]
+        public void CanSortNegativeNumbers()
+        {
+            //Arrange
+            int[] input = new int[] { -6, -87, -32, -7, -9 };
+            //Act
+            BubbleSortArray(input);
+            //Assert
+            Assert.Equal(new int[] { -87, -32, -9, -7, -6 }, input);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 5, 12, 6, 3 }, new int[] { 3, 5, 6, 12 })]
+        [InlineData(new int[] { 43, 3, 19, 4, 17, 11 }, new int[] { 3, 4, 11, 17, 19, 43 })]
+        [InlineData(new int[] { 54, 9, 54, 1 }, new int[] { 1, 9, 54, 54 })]
+        public void SortArrayTest(int[] input, int[] expected)
+        {
+            BubbleSortArray(input);
+            Assert.Equal(expected, input);
+        }
     }
 }

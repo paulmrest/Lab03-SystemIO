@@ -20,18 +20,24 @@ namespace Lab03_SystemIO
             //PrintDiamond();
 
             //Challenge 4
-            int[] intArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
-            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
-            intArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
-            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
-            intArray = new int[] { 43, 3, 19, 4, 19 };
-            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
-            intArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
-            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
+            //int[] mostCommonIntArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
+            //Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(mostCommonIntArray), FindMostCommon(mostCommonIntArray));
+            //mostCommonIntArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
+            //Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(mostCommonIntArray), FindMostCommon(mostCommonIntArray));
+            //mostCommonIntArray = new int[] { 43, 3, 19, 4, 19 };
+            //Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(mostCommonIntArray), FindMostCommon(mostCommonIntArray));
+            //mostCommonIntArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
+            //Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(mostCommonIntArray), FindMostCommon(mostCommonIntArray));
 
-            //[InlineData(new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 }, 5)]
-            //[InlineData(new int[] { 43, 3, 19, 4, 19 }, 19)]
-            //[InlineData(new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 }, 9)]
+            //Challenge 5
+            int[] maxValueIntArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
+            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            maxValueIntArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
+            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            maxValueIntArray = new int[] { 43, 3, 19, 4, 19 };
+            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
+            maxValueIntArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
+            Console.WriteLine("The largest value in the array {0} is: {1}", StringifyIntArray(maxValueIntArray), FindLargest(maxValueIntArray));
         }
 
         //Challenge 1
@@ -225,6 +231,38 @@ namespace Lab03_SystemIO
                 }
             }
             return highestCount[0];
+        }
+
+        //Challenge 5
+        public static int FindLargest(int[] array)
+        {
+            BubbleSortArray(array);
+            return array[array.Length - 1];
+        }
+
+        /// <summary>
+        /// A simple bubble sort method. Takes in an array and integers, sorts it in place.
+        /// </summary>
+        /// <param name="array">
+        /// An array of integers, positive or negative.
+        /// </param>
+        public static void BubbleSortArray(int[] array)
+        {
+            bool notSorted = true;
+            while (notSorted)
+            {
+                notSorted = false;
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    if (array[i] > array[i + 1])
+                    {
+                        notSorted = true;
+                        int temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+                    }
+                }
+            }
         }
 
         //Helper methods
