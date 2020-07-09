@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Text;
 
 namespace Lab03_SystemIO
 {
@@ -10,7 +13,10 @@ namespace Lab03_SystemIO
             //GetProductFromUserInput();
 
             //Challenge 2
-            GetAverageFromUserInput();
+            //GetAverageFromUserInput();
+
+            //Challenge 3
+            PrintDiamond();
         }
 
         //Challenge 1
@@ -110,7 +116,6 @@ namespace Lab03_SystemIO
             Console.WriteLine("The average of these {0} numbers is {1}", arraySize, average);
         }
 
-
         /// <summary>
         /// Calculates the average, as an integer rounded down, of the numbers in
         /// the parameter array.
@@ -127,6 +132,40 @@ namespace Lab03_SystemIO
                 sum += oneInt;
             }
             return sum / array.Length;
+        }
+
+
+        //Challenge 3
+        static void PrintDiamond()
+        {
+            int rowSize = 9;
+            int rowsAboveAndBelowMiddle = rowSize / 2;
+            string[] diamondTopAndMiddleArray = new string[rowsAboveAndBelowMiddle + 1];
+            string[] diamondRow = new string[rowSize];
+            for (int i = 0; i < diamondTopAndMiddleArray.Length; i++)
+            {
+                Array.Fill(diamondRow, " ");
+                int startingStarIndex = (rowSize / 2) - i;
+                for (int j = startingStarIndex; j <= startingStarIndex + (i * 2); j++)
+                {
+                    diamondRow[j] = "*";
+                }
+                diamondTopAndMiddleArray[i] = String.Join("", diamondRow);
+            }
+            string[] diamondBottomArray = new string[rowsAboveAndBelowMiddle];
+            for (int i = 0; i < rowsAboveAndBelowMiddle; i++)
+            {
+                diamondBottomArray[i] = diamondTopAndMiddleArray[diamondTopAndMiddleArray.Length - (i + 2)];
+            }
+            foreach (string oneRow in diamondTopAndMiddleArray)
+            {
+                Console.WriteLine(oneRow);
+            }
+            foreach (string oneRow in diamondBottomArray)
+            {
+                Console.WriteLine(oneRow);
+            }
+
         }
     }
 }
