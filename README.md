@@ -18,6 +18,7 @@ A console app that prompts the user for a number between 2 - 10. User then enter
 ### Challenge 3
 Print the following figure to the console:
 
+```
     *
    ***
   *****
@@ -27,6 +28,7 @@ Print the following figure to the console:
   *****
    ***
     *
+```
 
 ### Challenge 4
 A method that finds the most common value in an array of integers.
