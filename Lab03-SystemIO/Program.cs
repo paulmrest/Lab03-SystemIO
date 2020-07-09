@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -16,7 +17,21 @@ namespace Lab03_SystemIO
             //GetAverageFromUserInput();
 
             //Challenge 3
-            PrintDiamond();
+            //PrintDiamond();
+
+            //Challenge 4
+            int[] intArray = new int[] { 1, 1, 2, 2, 3, 3, 3, 1, 1, 5, 5, 6, 7, 8, 2, 1, 1 };
+            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
+            intArray = new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 };
+            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
+            intArray = new int[] { 43, 3, 19, 4, 19 };
+            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
+            intArray = new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 };
+            Console.WriteLine("The most common value in the array {0} is: {1}", StringifyIntArray(intArray), FindMostCommon(intArray));
+
+            //[InlineData(new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5 }, 5)]
+            //[InlineData(new int[] { 43, 3, 19, 4, 19 }, 19)]
+            //[InlineData(new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 }, 9)]
         }
 
         //Challenge 1
@@ -134,10 +149,14 @@ namespace Lab03_SystemIO
             return sum / array.Length;
         }
 
-
         //Challenge 3
+        /// <summary>
+        /// Prints a diamond figure. Default is 9 but can make any size figure by adjusting rowSize
+        /// variable.
+        /// </summary>
         static void PrintDiamond()
         {
+            //rowSize must be odd and >= 3 for function to work
             int rowSize = 9;
             int rowsAboveAndBelowMiddle = rowSize / 2;
             string[] diamondTopAndMiddleArray = new string[rowsAboveAndBelowMiddle + 1];
@@ -166,6 +185,73 @@ namespace Lab03_SystemIO
                 Console.WriteLine(oneRow);
             }
 
+        }
+
+        //Challenge 4
+        /// <summary>
+        /// Finds the most common value in an array of integers. If one or more values share
+        /// the same frequency, finds whichever occurs first in the array.
+        /// </summary>
+        /// <param name="array">Array of integers</param>
+        /// <returns>
+        /// An integer the represents the most common value in the array.
+        /// If multiple values of the same frequency, returns whichever is first in the array.
+        /// </returns>
+        public static int FindMostCommon(int[] array)
+        {
+            List<int[]> counts = new List<int[]>();
+            foreach (int oneInt in array)
+            {
+                bool countExists = false;
+                foreach (int[] countArray in counts)
+                {
+                    if (countArray[0] == oneInt)
+                    {
+                        countExists = true;
+                        countArray[1] = countArray[1] + 1;
+                    }
+                }
+                if (!countExists)
+                {
+                    counts.Add(new int[] { oneInt, 1 });
+                }
+            }
+            int[] highestCount = counts.First();
+            foreach (int[] countArray in counts)
+            { 
+                if (countArray[1] > highestCount[1])
+                {
+                    highestCount = countArray;
+                }
+            }
+            return highestCount[0];
+        }
+
+        //Helper methods
+        /// <summary>
+        /// Builds a nicely formatted string from an int array.
+        /// </summary>
+        /// <param name="intArray">
+        /// An array of integers
+        /// </param>
+        /// <returns>
+        /// A nicely formatted string representation of an integer array.
+        /// </returns>
+        static String StringifyIntArray(int[] intArray)
+        {
+            StringBuilder arrayString = new StringBuilder();
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (i >= intArray.Length - 1)
+                {
+                    arrayString.Append(intArray[i]);
+                }
+                else
+                {
+                    arrayString.Append($"{intArray[i]}, ");
+                }
+            }
+            return arrayString.ToString();
         }
     }
 }

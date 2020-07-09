@@ -70,5 +70,49 @@ namespace Lab03_SystemIOTest
             int result = AverageArray(input);
             Assert.Equal(expected, result);
         }
+
+        //Challenge 4
+        [Fact]
+        public void AllValuesInArraySame()
+        {
+            //Arrange
+            int[] input = new int[] { 3, 3, 3, 3, 3, 3 };
+            //Act
+            int result = FindMostCommon(input);
+            //Assert
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void NoDuplicatesInArray()
+        {
+            //Arrange
+            int[] input = new int[] { 1, 3, 5, 7, 9 };
+            //Act
+            int result = FindMostCommon(input);
+            //Assert
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void MultipleValuesWithSameFrequency()
+        {
+            //Arrange
+            int[] input = new int[] { 5, 7, 5, 1, 2, 7 };
+            //Act
+            int result = FindMostCommon(input);
+            //Assert
+            Assert.Equal(5, result);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 5, 12, 6, 12, 5, 7, 14, 9, 5}, 5)]
+        [InlineData(new int[] { 43, 3, 19, 4, 19 }, 19)]
+        [InlineData(new int[] { 6, 5, 9, 5, 9, 4, 6, 23, 9, 7, 9 }, 9)]
+        public void FindMostCommonTest(int[] input, int expected)
+        {
+            int result = FindMostCommon(input);
+            Assert.Equal(expected, result);
+        }
     }
 }
