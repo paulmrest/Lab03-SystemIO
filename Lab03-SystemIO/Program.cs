@@ -44,7 +44,10 @@ namespace Lab03_SystemIO
             //WriteUserInputToFile();
 
             //Challenge 7
-            WriteWordsTxtFileToConsole();
+            //WriteWordsTxtFileToConsole();
+
+            //Challenge 8
+            RemoveWordUserSelects();
         }
 
         //Challenge 1
@@ -340,6 +343,39 @@ namespace Lab03_SystemIO
                 }
             }
             return rtnString.ToString();
+        }
+
+        //Challenge 8
+        static void RemoveWordUserSelects()
+        {
+            Console.WriteLine("The file words.txt contains the following text:");
+            WriteWordsTxtFileToConsole();
+            Console.WriteLine("Select one word to remove from the file:");
+            string word = Console.ReadLine();
+            string path = "../../../words.txt";
+            RemoveWordFromFile(word, path);
+        }
+
+        public static void RemoveWordFromFile(string word, string path)
+        {
+            string fileText = ReadFileAt(path);
+            char[] delimiters = { ' ', '.', '?', '!', ':', ';', ',', '\n' };
+            string[] splitText = fileText.Split(delimiters);
+            int wordFoundShift = 0;
+            for (int i = 0; i < splitText.Length; i++)
+            {
+                string oneString = splitText[i];
+                if (oneString.ToLower() == word.ToLower())
+                {
+                    wordFoundShift++;
+                    splitText[i] = splitText[i + 1];
+                }
+                if (wordFoundShift > 0)
+                {
+                    splitText[i] = splitText[i + wordFoundShift];
+                }
+            }
+            string rejoined = String.Join("", splitText);
         }
 
         //Helper methods
