@@ -42,6 +42,12 @@ A console app that gets the user's input and writes that to a file "words.txt". 
 ### Challenge 7
 A console app that writes the contents of the file "words.txt" to the console. If the file has multiple lines, each line is written as a new line.
 
+### Challenge 8
+A console app that removes one word from the file "words.txt", and displays the modified file contents to the console.
+
+### Challenge 9
+A method that takes a sentence and returns a string array where each element is every word in the sentence and how many letters are in that word.
+
 ---
 
 ### Getting Started
@@ -95,6 +101,20 @@ Select ```Debug``` -> ```Start Without Debugging```
 #### Challenge 7
 ![Challenge 7 Sample Output](images/Challenge07-SampleOutput.png)
 
+#### Challenge 8
+![Challenge 8 Sample Output](images/Challenge08-SampleOutput.png)
+
+#### Challenge 9
+![Challenge 9 Sample Output](images/Challenge09-SampleOutput.png)
+
+#### Challenge 9 - Whiteboard (Wrong Problem)
+
+I misread what problem this was solving, and instead whiteboarded a solution to the following problem: write a method that takes in a sentence and returns a string array where each element is how many times the word appeared in that sentence.
+
+I then intentionally took an approach that pushed my knowledge a bit, so you'll see that some parts of the code section are more pseudo than code. I wrote and saved most of the actual solution, although I haven't tested it yet.
+
+![Challenge 9 - Whiteboard (Wrong Problem)](images/Challenge09-WrongProblem-WB.png)
+
 ### Change Log
 
 #### 2020-07-08
@@ -105,6 +125,10 @@ Select ```Debug``` -> ```Start Without Debugging```
 - Challenge 05. 21:54 PDT
 - Challenge 06. 22:15 PDT
 - Challenge 07. 22:37 PDT
+
+#### 2020-07-12
+- Challenge 08. 15:00 PDT
+- Challenge 09. 19:30 PDT
 
 ------------------------------
 For more information on Markdown: https://www.markdownguide.org/cheat-sheet
