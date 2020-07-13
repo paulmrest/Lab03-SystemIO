@@ -47,7 +47,17 @@ namespace Lab03_SystemIO
             //WriteWordsTxtFileToConsole();
 
             //Challenge 8
-            RemoveWordUserSelects();
+            //RemoveWordUserSelects();
+
+            //Challenge 9
+            //string input1 = "Money and chickens for nothing";
+            //Console.WriteLine("For the sentence: {0}", input1);
+            //Console.WriteLine("The letter count array is:");
+            //Console.WriteLine(StringifyStringArray(WordLetterCount(input1)));
+            //string input2 = "Monsters in the, purported, lampshade";
+            //Console.WriteLine("For the sentence: {0}", input2);
+            //Console.WriteLine("The letter count array is:");
+            //Console.WriteLine(StringifyStringArray(WordLetterCount(input2)));
         }
 
         //Challenge 1
@@ -308,7 +318,7 @@ namespace Lab03_SystemIO
         /// </param>
         public static void WriteStringToFile(string str, string path)
         {
-            str = "\n" + str;
+            str = System.Environment.NewLine + str;
             File.AppendAllText(path, str);
         }
 
@@ -346,36 +356,109 @@ namespace Lab03_SystemIO
         }
 
         //Challenge 8
+        /// <summary>
+        /// Prompts the user for which word they'd like to remove from the "words.txt" file.
+        /// </summary>
         static void RemoveWordUserSelects()
         {
             Console.WriteLine("The file words.txt contains the following text:");
             WriteWordsTxtFileToConsole();
-            Console.WriteLine("Select one word to remove from the file:");
+            Console.Write("Select one word to remove from the file: ");
             string word = Console.ReadLine();
             string path = "../../../words.txt";
             RemoveWordFromFile(word, path);
+            Console.WriteLine("After removing {0} the file contains the following text:", word);
+            WriteWordsTxtFileToConsole();
         }
 
+        /// <summary>
+        /// Removes a word from the file the given path.
+        /// </summary>
+        /// <param name="word">string: the word to be removed</param>
+        /// <param name="path">string: the path of the file</param>
+        /// <remarks>
+        /// Does not work for any word next to a punctuation symbol. I couldn't figure out a simple way
+        /// to preserve punctuation and capture words next to it.
+        /// </remarks>
         public static void RemoveWordFromFile(string word, string path)
         {
             string fileText = ReadFileAt(path);
-            char[] delimiters = { ' ', '.', '?', '!', ':', ';', ',', '\n' };
-            string[] splitText = fileText.Split(delimiters);
-            int wordFoundShift = 0;
-            for (int i = 0; i < splitText.Length; i++)
+            string[] textLines = fileText.Split(new[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            List<string> newText = new List<string>();
+            //StringBuilder newText = new StringBuilder();
+            StringBuilder newLine = new StringBuilder();
+            char[] delimiters = { ' ' };
+            foreach (string oneLine in textLines)
             {
-                string oneString = splitText[i];
-                if (oneString.ToLower() == word.ToLower())
+                newLine.Clear();
+                string[] words = oneLine.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < words.Length; i++)
                 {
-                    wordFoundShift++;
-                    splitText[i] = splitText[i + 1];
+                    string oneWord = words[i];
+                    if (oneWord.ToLower() != word.ToLower())
+                    {
+                        newLine.Append(oneWord);
+                        if (i < words.Length - 1)
+                        {
+                            newLine.Append(" ");
+                        }
+                    }
                 }
-                if (wordFoundShift > 0)
+                newText.Add(newLine.ToString());
+            }
+            WriteTextToPath(path, newText.ToArray());
+        }
+
+        /// <summary>
+        /// Writes text to the file at a given path without the blank line File.WriteAllText() adds.
+        /// Based on this solution: https://stackoverflow.com/a/11689630/2149946
+        /// </summary>
+        /// <param name="path">string: the path of the file to write to.</param>
+        /// <param name="text">string[]: the text to write, as an array of strings with each string being a line</param>
+        public static void WriteTextToPath(string path, string[] textAsLines)
+        {
+            File.Delete(path);
+            using (Stream fileStream = File.OpenWrite(path))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream))
                 {
-                    splitText[i] = splitText[i + wordFoundShift];
+                    if (textAsLines.Length > 0)
+                    {
+                        //write all but the last line using for loop
+                        for (int i = 0; i < textAsLines.Length - 1; i++)
+                        {
+                            writer.WriteLine(textAsLines[i]);
+                        }
+                        //write last line
+                        string lastLine = textAsLines[textAsLines.Length - 1];
+                        writer.Write(lastLine);
+                    }
                 }
             }
-            string rejoined = String.Join("", splitText);
+        }
+
+        //Challenge 9
+        /// <summary>
+        /// A method that takes a string sentence, and returns an array of strings showing how many words are in each word in the sentence.
+        /// </summary>
+        /// <param name="sentence">
+        /// string: a sentence
+        /// </param>
+        /// <returns>
+        /// An array of strings with each element in the format "aWord: 5".
+        /// </returns>
+        public static string[] WordLetterCount(string sentence)
+        {
+            char[] delimiters = { ' ', ',', '.', '?', '!', ':', ';' };
+            string[] words = sentence.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            string[] wordLetterCounts = new string[words.Length];
+            for (int i = 0; i < words.Length; i++)
+            {
+                string oneWord = words[i];
+                string wordAndCount = $"{oneWord.ToLower()}: {oneWord.ToCharArray().Length}";
+                wordLetterCounts[i] = wordAndCount;
+            }
+            return wordLetterCounts;
         }
 
         //Helper methods
@@ -400,6 +483,32 @@ namespace Lab03_SystemIO
                 else
                 {
                     arrayString.Append($"{intArray[i]}, ");
+                }
+            }
+            return arrayString.ToString();
+        }
+        
+        /// <summary>
+        /// Builds a nicely formatted string from a string array.
+        /// </summary>
+        /// <param name="strArray">
+        /// An array of strings
+        /// </param>
+        /// <returns>
+        /// A nicely formatted string representation of a string array.
+        /// </returns>
+        static String StringifyStringArray(string[] strArray)
+        {
+            StringBuilder arrayString = new StringBuilder();
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                if (i >= strArray.Length - 1)
+                {
+                    arrayString.Append(strArray[i]);
+                }
+                else
+                {
+                    arrayString.Append($"{strArray[i]}, ");
                 }
             }
             return arrayString.ToString();

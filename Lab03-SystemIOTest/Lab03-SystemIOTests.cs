@@ -169,5 +169,40 @@ namespace Lab03_SystemIOTest
             BubbleSortArray(input);
             Assert.Equal(expected, input);
         }
+
+        //Challenge 9 - Word Count
+        [Fact]
+        public void ReturnsCorrectArray()
+        {
+            //Arrange
+            string input = "Money and chickens for nothing";
+            string[] expected = new string[] { "money: 5", "and: 3", "chickens: 8", "for: 3", "nothing: 7" };
+            //Act
+            string[] result = WordLetterCount(input);
+            //Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ReturnsAnArray()
+        {
+            //Arrange
+            string input = "Money and chickens for nothing";
+            Type expected = new string[0].GetType();
+            //Act
+            string[] result = WordLetterCount(input);
+            //Assert
+            Assert.IsType(expected, result);
+        }
+
+        [Theory]
+        [InlineData("A blip on the horizon", new string[] { "a: 1", "blip: 4", "on: 2", "the: 3", "horizon: 7" })]
+        [InlineData("Monsters in the, purported, lampshade", new string[] { "monsters: 8", "in: 2", "the: 3", "purported: 9", "lampshade: 9"})]
+        [InlineData("Within the ice bottle: fire and sand", new string[] { "within: 6", "the: 3", "ice: 3", "bottle: 6", "fire: 4", "and: 3", "sand: 4" })]
+        public void HandlesSentencesWithDifferentSymbols(string input, string[] expected)
+        {
+            string[] result = WordLetterCount(input);
+            Assert.Equal(expected, result);
+        }
     }
 }
