@@ -1,4 +1,4 @@
-# CF - 401 - Lab 03 - System IO
+# Lab 03 - System IO
 
 ## Various Code Challenges
 
